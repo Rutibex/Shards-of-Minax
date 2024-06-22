@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings close_on_launch="False" use_preview_package="True" auto_apply_updates="False" last_profile_name="Shards of Minax" driver_type="0">
+	<profiles>
+		<profile name="Shards of Minax" cuo_path="" username="" password="" server="localhost" port="2593" charname="" client_version="7.0.12.0" uo_protocol="0" uopath="C:\Shards_Of_Minax\Client_files" server_type="0" last_server_index="255" last_server_name="" debug="False" profiler="False" save_account="False" skip_login_screen="False" autologin="False" reconnect="False" reconnect_time="1000" has_music="True" high_dpi="False" use_verdata="False" music_volume="50" encryption_type="0" force_driver="0" packet_log="False" args="">
+			<plugins />
+		</profile>
+	</profiles>
+</settings>

@@ -1,0 +1,11 @@
+1) copy everything to C:\Shards_Of_Minax it must be this directory or it won't work
+
+2) double click "Run Server" to boot up ther server
+
+3) double click "ClassicUOLauncher".  Make a profile and click on the settings.  
+Under UO Path: "C:\Shards_Of_Minax\Client_files"  
+Under Server IP: "localhost" Port: 2593
+
+4) Launch your profile and enter any login and password.  this will create a new account.  now you can play!  Make sure the server saves before you log off or your progress will revert
+
+5) For the admin account the login is "admin" and password is "admin"

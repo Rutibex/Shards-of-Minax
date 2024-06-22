@@ -1,0 +1,65 @@
+﻿11:12:07 |  TRACE  | 
+================= ClassicUO Launcher Log =================
+-OS: windows
+-description: Microsoft Windows 10.0.14393
+-arch: X64
+-processArch: X64
+-args: C:\Shards_Of_Minax\ClassicUOLauncher.exe
+
+11:12:07 |  TRACE  | setup FNA env vars
+11:12:07 |  TRACE  | starting to load settings
+11:12:07 |  TRACE  | getting special folder path
+11:12:07 |  TRACE  | appdata path: C:\Users\John Smith\AppData\Roaming
+11:12:07 |  TRACE  | settings path: C:\Users\John Smith\AppData\Roaming\ClassicUOLauncher\launcher_settings.xml
+11:12:07 |  TRACE  | loading settings in: C:\Users\John Smith\AppData\Roaming\ClassicUOLauncher\launcher_settings.xml
+11:12:07 |  TRACE  | done
+11:12:07 |  TRACE  | setup FNA logger functions
+11:12:07 |  TRACE  | creating the engine
+11:12:08 |  TRACE  | SDL backend creation...
+11:12:08 |  TRACE  | SDL backend created.
+11:12:08 |  TRACE  | running the engine!
+11:12:09 |  TRACE  | FNA3D Driver: D3D11
+11:12:09 |  TRACE  | D3D11 Adapter: NVIDIA GeForce GTX 1050
+11:12:09 |  TRACE  | ImGui renderer creation...
+11:12:09 |  TRACE  | ImGui adding custom font
+11:12:09 |  TRACE  | ImGui adding VarelaRound-Regular.ttf
+11:12:09 |  TRACE  | ImGui adding icons
+11:12:09 |  TRACE  | ImGui building font atlas
+11:12:09 |  TRACE  | fonts correctly built
+11:12:09 |  TRACE  | ImGui setting style
+11:12:10 |  TRACE  | discovering plugins...
+11:12:10 |  TRACE  | pattern plugin search: *.dll
+11:12:10 |  TRACE  | downloading manifest...
+11:12:10 |  TRACE  | check launcher patch available
+11:12:10 |  TRACE  | downloading manifest...
+11:12:10 |  TRACE  | pattern plugin search: *.exe
+11:12:10 |  TRACE  | loading manifest xml
+11:12:10 |  TRACE  | loading manifest xml
+ACE  | adding preset: LegenD
+16:48:47 |  TRACE  | adding preset: Millenia
+16:48:47 |11:12:10 |  TRACE  | manifest loaded
+11:12:10 |  TRACE  | check launcher path: C:\Shards_Of_Minax
+11:12:10 |  TRACE  | check if update is needed
+11:12:10 |  TRACE  | manifest loaded
+11:12:10 |  TRACE  | check if update is needed
+11:12:10 |  TRACE  | plugins found: 1
+11:12:10 |  TRACE  | done
+11:12:11 |  TRACE  | adding preset: Elemental
+11:12:11 |  TRACE  | adding preset: Heritage
+11:12:11 |  TRACE  | adding preset: LegenD
+11:12:11 |  TRACE  | adding preset: Millenia
+11:12:11 |  TRACE  | adding preset: OSI
+11:12:11 |  TRACE  | adding preset: UO: Felucca
+11:12:11 |  TRACE  | adding preset: UOAlive
+11:12:11 |  TRACE  | adding preset: Utopia
+11:12:11 |  TRACE  | adding preset: Eclipse
+11:12:20 |  TRACE  | no update needed
+11:12:24 |  TRACE  | CUO path is empty! Use current folder: C:\Shards_Of_Minax\ClassicUO
+11:12:24 |  TRACE  | Launching the game!
+11:12:24 |  TRACE  | cuo path: 'C:\Shards_Of_Minax\ClassicUO'
+11:12:24 |  TRACE  | args: -uopath "H:\Games\Electronic Arts\Shards of Minax" -username "admin" -ip "localhost" -port "2593" -clientversion "7.0.102.3" -lastcharname "" -last_server_name "" -saveaccount "False" -autologin "False" -reconnect "False" -reconnect_time "1000" -music "True" -music_volume "50" -profiler "False" -use_verdata "False" -encryption "0" -force_driver "0" -plugins "Razor\Razor.exe" -shard_type "0" -skipupdate ""  
+11:13:33 |  TRACE  | saving settings in: C:\Users\John Smith\AppData\Roaming\ClassicUOLauncher\launcher_settings.xml
+11:13:33 |  TRACE  | done
+11:13:33 |  TRACE  | saving settings in: C:\Users\John Smith\AppData\Roaming\ClassicUOLauncher\launcher_settings.xml
+11:13:33 |  TRACE  | done
+11:13:33 |  TRACE  | closing...
