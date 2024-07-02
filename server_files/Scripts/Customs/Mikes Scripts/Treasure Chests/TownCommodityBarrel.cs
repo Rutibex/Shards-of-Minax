@@ -7,6 +7,8 @@ namespace Server.Custom
 {
     public class TownCommodityBarrel : LockableContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public TownCommodityBarrel() : base(0xFAE) // Shipping Crate item ID
         {
@@ -14,7 +16,13 @@ namespace Server.Custom
             Hue = Utility.RandomMinMax(1, 1600);
             Locked = true;
             LockLevel = Utility.RandomMinMax(1, 100);
-			GumpID = 62;
+            GumpID = 62;
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add basic commodities
             AddItemWithProbability(new IronIngot(Utility.RandomMinMax(50, 100)), 0.25);
@@ -25,19 +33,19 @@ namespace Server.Custom
             AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new FishSteak(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new Bottle(Utility.RandomMinMax(10, 20)), 0.10);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new IronIngot(Utility.RandomMinMax(50, 100)), 0.25);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new IronIngot(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new OakLog(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new Board(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new SackFlour(Utility.RandomMinMax(1, 5)), 0.15);
@@ -45,19 +53,19 @@ namespace Server.Custom
             AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new FishSteak(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new Bottle(Utility.RandomMinMax(10, 20)), 0.10);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new IronIngot(Utility.RandomMinMax(50, 100)), 0.25);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new IronIngot(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new OakLog(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new Board(Utility.RandomMinMax(50, 100)), 0.25);
             AddItemWithProbability(new SackFlour(Utility.RandomMinMax(1, 5)), 0.15);
@@ -65,21 +73,23 @@ namespace Server.Custom
             AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new FishSteak(Utility.RandomMinMax(5, 10)), 0.10);
             AddItemWithProbability(new Bottle(Utility.RandomMinMax(10, 20)), 0.10);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new SackFlour(), 0.07);
-			AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new SackFlour(), 0.07);
+            AddItemWithProbability(new Board(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new BreadLoaf(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new CheeseWheel(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bottle(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bacon(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Ham(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Sausage(Utility.RandomMinMax(1, 50)) { Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
 
             // Add captain's logs
             AddItemWithProbability(CreateCaptainsLog(), 0.30);
+
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -263,6 +273,7 @@ namespace Server.Custom
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
             FlagAsCriminal(from);
         }
 
@@ -288,13 +299,15 @@ namespace Server.Custom
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(0);
+            writer.Write((int)0); // version
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
 }

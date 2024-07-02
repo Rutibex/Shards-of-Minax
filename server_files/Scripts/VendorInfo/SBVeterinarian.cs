@@ -32,6 +32,8 @@ namespace Server.Mobiles
             public InternalBuyInfo()
             {
                 Add(new GenericBuyInfo(typeof(Bandage), 6, 20, 0xE21, 0, true));
+				Add(new GenericBuyInfo(typeof(PetLeash), 100000, 10, 0x1374, 0));
+				Add(new GenericBuyInfo(typeof(HarvestersBlade), 5000, 10, 0x2D20, 0));
                 Add(new AnimalBuyInfo(1, typeof(PackHorse), 616, 10, 291, 0));
                 Add(new AnimalBuyInfo(1, typeof(PackLlama), 523, 10, 292, 0));
                 Add(new AnimalBuyInfo(1, typeof(Dog), 158, 10, 217, 0));

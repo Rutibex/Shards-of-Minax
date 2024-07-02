@@ -78,7 +78,7 @@ namespace Server.Engines.Quests
 	    {
 	        new Type[][]
 	        {
-	            new Type[] { typeof(Bait) }, 
+	            new Type[] { typeof(Bait), typeof(MaxxiaScroll) }, 
 	            new Type[] { typeof(LavaLobsterTrap) },
 	            new Type[] { typeof(FishingGuideBook1), typeof(FishingGuideBook2) },
 	            new Type[] { typeof(PowerScroll), typeof(FishingPole) },
@@ -86,7 +86,7 @@ namespace Server.Engines.Quests
 
 	        new Type[][]
 	        {
-	            new Type[] { typeof(Bait) },
+	            new Type[] { typeof(Bait), typeof(MaxxiaScroll) },
 	            new Type[] { typeof(LavaHook), typeof(LavaLobsterTrap), typeof(JunkProofHook) },
 	            new Type[] { typeof(FishingGuideBook1), typeof(FishingGuideBook2), typeof(FishingGuideBook3), typeof(FishingPole) },
 	            new Type[] { typeof(PowerScroll), typeof(OracleOfTheSea), typeof(DredgingHook) },
@@ -94,7 +94,7 @@ namespace Server.Engines.Quests
 
 	        new Type[][]
 	        {
-	            new Type[] { typeof(Bait) },
+	            new Type[] { typeof(Bait), typeof(MaxxiaScroll) },
 	            new Type[] { typeof(LavaHook), typeof(DredgingHook), typeof(JunkProofHook), typeof(FishingPole) },
 	            new Type[] { typeof(FishingGuideBook3), typeof(FishingGuideBook4), typeof(FishingGuideBook5), },
 	            new Type[] { typeof(PowerScroll), typeof(OracleOfTheSea) },
@@ -102,7 +102,7 @@ namespace Server.Engines.Quests
 
 	        new Type[][]
 	        {
-	            new Type[] { typeof(Bait),  typeof(JunkProofHook) },
+	            new Type[] { typeof(Bait),  typeof(JunkProofHook), typeof(MaxxiaScroll) },
 	            new Type[] { typeof(OracleOfTheSea), typeof(LavaHook), typeof(FishingPole) },
 	            new Type[] { typeof(FishingGuideBook4), typeof(FishingGuideBook5), typeof(FishingGuideBook6) },
 	            new Type[] { typeof(PowerScroll), typeof(PermanentBoatPaint) },

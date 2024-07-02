@@ -1,6 +1,15 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.ACC.CSS.Systems.ForagersGuidebook;
+using Server.ACC.CSS.Systems.Ancient;
+using Server.ACC.CSS.Systems.Avatar;
+using Server.ACC.CSS.Systems.Bard;
+using Server.ACC.CSS.Systems.Cleric;
+using Server.ACC.CSS.Systems.CookingMagic;
+using Server.ACC.CSS.Systems.Druid;
+using Server.ACC.CSS.Systems.Ranger;
+using Server.ACC.CSS.Systems.Rogue;
 
 namespace Server.Mobiles
 {
@@ -71,6 +80,17 @@ namespace Server.Mobiles
                     Add(new GenericBuyInfo(typeof(GraveDust), 3, 999, 0xF8F, 0));
                 }
 
+				Add(new GenericBuyInfo(typeof(AncientSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(AvatarSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(BardSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(ClericSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(CookingSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(DruidSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(ForagersBook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(RangerSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(RogueSpellbook), 5000, 10, 0xEFA, 0));
+				Add(new GenericBuyInfo(typeof(MoonstoneCrystal), 10000, 10, 0x9CBB, 0));
+
                 Type[] types = Loot.RegularScrollTypes;
 
                 int circles = 3;
@@ -114,6 +134,15 @@ namespace Server.Mobiles
 
                 Add(typeof(RecallRune), 13);
                 Add(typeof(Spellbook), 25);
+				Add(typeof(AncientSpellbook), 5000);
+				Add(typeof(AvatarSpellbook), 5000);
+				Add(typeof(BardSpellbook), 5000);
+				Add(typeof(ClericSpellbook), 5000);
+				Add(typeof(CookingSpellbook), 5000);
+				Add(typeof(DruidSpellbook), 5000);
+				Add(typeof(ForagersBook), 5000);
+				Add(typeof(RangerSpellbook), 5000);
+				Add(typeof(RogueSpellbook), 5000);
 
                 Type[] types = Loot.RegularScrollTypes;
 

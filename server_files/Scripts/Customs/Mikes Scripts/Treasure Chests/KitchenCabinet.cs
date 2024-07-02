@@ -7,6 +7,8 @@ namespace Server.Custom
 {
     public class KitchenCabinet : LockableContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public KitchenCabinet() : base(0x9AB) // Cabinet item ID
         {
@@ -14,6 +16,12 @@ namespace Server.Custom
             Hue = Utility.RandomMinMax(1, 1600);
             Locked = true;
             LockLevel = Utility.RandomMinMax(1, 100);
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add random kitchen items
             AddItemWithProbability(new CheeseWheel(), 0.20);
@@ -73,60 +81,60 @@ namespace Server.Custom
             AddItemWithProbability(new SackFlour(), 0.05);
             AddItemWithProbability(new Watermelon(), 0.05);
             AddItemWithProbability(new Grapes(Utility.RandomMinMax(1, 5)), 0.05);
-			// Unique named kitchen items with random hues
-			AddItemWithProbability(new BreadLoaf() { Name = "Artisan Bread", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new ApplePie() { Name = "Grandma's Apple Pie", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Cake() { Name = "Celebration Cake", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Muffins() { Name = "Blueberry Muffins", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new CheeseWheel() { Name = "Aged Cheese Wheel", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new CookedBird() { Name = "Roasted Pheasant", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bottle() { Name = "Vintage Wine Bottle", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Bacon() { Name = "Crispy Bacon Strips", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Ham() { Name = "Honey-Glazed Ham", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Sausage() { Name = "Spicy Sausage", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
-			AddItemWithProbability(new Pitcher() { Name = "Pitcher of Ale", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Pitcher() { Name = "Ornate Bowl", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Fork() { Name = "Silver Fork", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Spoon() { Name = "Golden Spoon", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Knife() { Name = "Carving Knife", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new RollingPin() { Name = "Wooden Rolling Pin", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Skillet() { Name = "Cast Iron Skillet", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Skillet() { Name = "Copper Frypan", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Pitcher() { Name = "Large Cooking Pot", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Goblet() { Name = "Jeweled Goblet", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new BottleOfWine() { Name = "Rare Wine Bottle", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Pitcher() { Name = "Ceremonial Cooking Pot", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Apple(Utility.RandomMinMax(1, 5)) { Name = "Golden Apple", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Banana(Utility.RandomMinMax(1, 5)) { Name = "Tropical Banana", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Carrot(Utility.RandomMinMax(1, 5)) { Name = "Fresh Carrot", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Onion(Utility.RandomMinMax(1, 5)) { Name = "Sweet Onion", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new Pumpkin() { Name = "Giant Pumpkin", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
-			AddItemWithProbability(new WoodenBowlOfPeas() { Name = "Bowl of Sweet Peas", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new WoodenBowlOfCarrots() { Name = "Bowl of Diced Carrots", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new WoodenBowlOfCorn() { Name = "Bowl of Golden Corn", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new WoodenBowlOfLettuce() { Name = "Bowl of Crisp Lettuce", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new SackOfSugar() { Name = "Bag of Fine Sugar", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new SackFlour() { Name = "Sack of Premium Flour", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Pitcher() { Name = "Jar of Wild Honey", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Watermelon() { Name = "Sweet Watermelon", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new Grapes(Utility.RandomMinMax(1, 5)) { Name = "Bunch of Grapes", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
-			AddItemWithProbability(new RandomFancyBakedGoods(), 0.05);
-			AddItemWithProbability(new RandomFancyCheese(), 0.05);
-			AddItemWithProbability(new RandomFancyDinner(), 0.10);
-			AddItemWithProbability(new RandomFancyFish(), 0.05);
-			AddItemWithProbability(new RandomFancyBakedGoods(), 0.05);
-			AddItemWithProbability(new RandomFancyCheese(), 0.05);
-			AddItemWithProbability(new RandomFancyDinner(), 0.10);
-			AddItemWithProbability(new RandomFancyFish(), 0.05);
+            // Unique named kitchen items with random hues
+            AddItemWithProbability(new BreadLoaf() { Name = "Artisan Bread", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new ApplePie() { Name = "Grandma's Apple Pie", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Cake() { Name = "Celebration Cake", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Muffins() { Name = "Blueberry Muffins", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new CheeseWheel() { Name = "Aged Cheese Wheel", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new CookedBird() { Name = "Roasted Pheasant", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bottle() { Name = "Vintage Wine Bottle", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Bacon() { Name = "Crispy Bacon Strips", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Ham() { Name = "Honey-Glazed Ham", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Sausage() { Name = "Spicy Sausage", Hue = Utility.RandomMinMax(1, 1600) }, 0.07);
+            AddItemWithProbability(new Pitcher() { Name = "Pitcher of Ale", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Pitcher() { Name = "Ornate Bowl", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Fork() { Name = "Silver Fork", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Spoon() { Name = "Golden Spoon", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Knife() { Name = "Carving Knife", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new RollingPin() { Name = "Wooden Rolling Pin", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Skillet() { Name = "Cast Iron Skillet", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Skillet() { Name = "Copper Frypan", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Pitcher() { Name = "Large Cooking Pot", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Goblet() { Name = "Jeweled Goblet", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new BottleOfWine() { Name = "Rare Wine Bottle", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Pitcher() { Name = "Ceremonial Cooking Pot", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Apple(Utility.RandomMinMax(1, 5)) { Name = "Golden Apple", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Banana(Utility.RandomMinMax(1, 5)) { Name = "Tropical Banana", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Carrot(Utility.RandomMinMax(1, 5)) { Name = "Fresh Carrot", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Onion(Utility.RandomMinMax(1, 5)) { Name = "Sweet Onion", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new Pumpkin() { Name = "Giant Pumpkin", Hue = Utility.RandomMinMax(1, 2000) }, 0.07);
+            AddItemWithProbability(new WoodenBowlOfPeas() { Name = "Bowl of Sweet Peas", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new WoodenBowlOfCarrots() { Name = "Bowl of Diced Carrots", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new WoodenBowlOfCorn() { Name = "Bowl of Golden Corn", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new WoodenBowlOfLettuce() { Name = "Bowl of Crisp Lettuce", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new SackOfSugar() { Name = "Bag of Fine Sugar", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new SackFlour() { Name = "Sack of Premium Flour", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Pitcher() { Name = "Jar of Wild Honey", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Watermelon() { Name = "Sweet Watermelon", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new Grapes(Utility.RandomMinMax(1, 5)) { Name = "Bunch of Grapes", Hue = Utility.RandomMinMax(1, 2000) }, 0.05);
+            AddItemWithProbability(new RandomFancyBakedGoods(), 0.05);
+            AddItemWithProbability(new RandomFancyCheese(), 0.05);
+            AddItemWithProbability(new RandomFancyDinner(), 0.10);
+            AddItemWithProbability(new RandomFancyFish(), 0.05);
+            AddItemWithProbability(new RandomFancyBakedGoods(), 0.05);
+            AddItemWithProbability(new RandomFancyCheese(), 0.05);
+            AddItemWithProbability(new RandomFancyDinner(), 0.10);
+            AddItemWithProbability(new RandomFancyFish(), 0.05);
 
-			
-			            // Add personal notes
+            // Add personal notes
             AddItemWithProbability(CreateRecipeNote(), 0.20);
-			AddItemWithProbability(CreateRecipeNote(), 0.20);
-			AddItemWithProbability(CreateRecipeNote(), 0.20);
-			AddItemWithProbability(CreateRecipeNote(), 0.20);
-			AddItemWithProbability(CreateRecipeNote(), 0.20);
+            AddItemWithProbability(CreateRecipeNote(), 0.20);
+            AddItemWithProbability(CreateRecipeNote(), 0.20);
+            AddItemWithProbability(CreateRecipeNote(), 0.20);
+            AddItemWithProbability(CreateRecipeNote(), 0.20);
 
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -134,7 +142,7 @@ namespace Server.Custom
             if (Utility.RandomDouble() < probability)
                 DropItem(item);
         }
-		
+
         private Item CreateRecipeNote()
         {
             string[] notes = new string[]
@@ -473,6 +481,7 @@ namespace Server.Custom
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
             FlagAsCriminal(from);
         }
 
@@ -498,13 +507,15 @@ namespace Server.Custom
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(0);
+            writer.Write((int)0); // version
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
 }

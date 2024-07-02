@@ -12,6 +12,8 @@ namespace Server.Custom
 {
     public class TreasureChest : LockableContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public TreasureChest() : base(0xE41) // Treasure Chest item ID
         {
@@ -19,13 +21,19 @@ namespace Server.Custom
             Hue = Utility.RandomMinMax(1, 1600);
             Locked = true;
             LockLevel = Utility.RandomMinMax(50, 100);
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add gold
             AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 1.0);
-			AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
-			AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
-			AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
-			AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
+            AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
+            AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
+            AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
+            AddItemWithProbability(new Gold(Utility.RandomMinMax(500, 10000)), 0.2);
 
             // Add jewels
             AddItemWithProbability(new Amber(Utility.RandomMinMax(1, 5)), 0.2);
@@ -49,107 +57,108 @@ namespace Server.Custom
 
             // Add rare artifacts
             AddItemWithProbability(new RandomMagicArmor(), 0.05);
-			AddItemWithProbability(new RandomMagicWeapon(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponA(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponB(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponC(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponD(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponE(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponF(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponG(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponH(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponI(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponJ(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponK(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponL(), 0.05);
-			AddItemWithProbability(new RandomMagicWeaponM(), 0.05);
-			AddItemWithProbability(new RandomMagicClothing(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingX(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXA(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXB(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXC(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXD(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryA(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryB(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryC(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryD(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryE(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryF(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryG(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryH(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryI(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryJ(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryK(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryL(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryM(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryN(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryO(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryP(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryQ(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryR(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryS(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryT(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryU(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryV(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryW(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryX(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryY(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryZ(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAA(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAB(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAC(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAD(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAE(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAF(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAG(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAH(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAI(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAJ(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAK(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAL(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAM(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAN(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAO(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryAP(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryXA(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryXB(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryXC(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryXD(), 0.004);
-			AddItemWithProbability(new RandomSkillJewelryXE(), 0.004);
-			
+            AddItemWithProbability(new RandomMagicWeapon(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponA(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponB(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponC(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponD(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponE(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponF(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponG(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponH(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponI(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponJ(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponK(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponL(), 0.05);
+            AddItemWithProbability(new RandomMagicWeaponM(), 0.05);
+            AddItemWithProbability(new RandomMagicClothing(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingX(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXA(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXB(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXC(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXD(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryA(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryB(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryC(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryD(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryE(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryF(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryG(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryH(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryI(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryJ(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryK(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryL(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryM(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryN(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryO(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryP(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryQ(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryR(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryS(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryT(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryU(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryV(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryW(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryX(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryY(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryZ(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAA(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAB(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAC(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAD(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAE(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAF(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAG(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAH(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAI(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAJ(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAK(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAL(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAM(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAN(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAO(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryAP(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryXA(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryXB(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryXC(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryXD(), 0.004);
+            AddItemWithProbability(new RandomSkillJewelryXE(), 0.004);
 
             // Add valuable documents
             AddItemWithProbability(CreateValuableDocument(), 0.2);
-			AddItemWithProbability(CreateValuableDocument(), 0.2);
-			AddItemWithProbability(CreateValuableDocument(), 0.2);
-			AddItemWithProbability(CreateValuableDocument(), 0.2);
-			AddItemWithProbability(CreateValuableDocument(), 0.2);
-			AddItemWithProbability(new StonePlasterHouseDeed(), 0.01);
-			AddItemWithProbability(new FieldStoneHouseDeed(), 0.01);
-			AddItemWithProbability(new SmallBrickHouseDeed(), 0.01);
-			AddItemWithProbability(new WoodHouseDeed(), 0.01);
-			AddItemWithProbability(new WoodPlasterHouseDeed(), 0.01);
-			AddItemWithProbability(new ThatchedRoofCottageDeed(), 0.01);
-			AddItemWithProbability(new BrickHouseDeed(), 0.01);
-			AddItemWithProbability(new TwoStoryStonePlasterHouseDeed(), 0.01);
-			AddItemWithProbability(new TwoStoryWoodPlasterHouseDeed(), 0.01);
-			AddItemWithProbability(new TowerDeed(), 0.01);
-			AddItemWithProbability(new KeepDeed(), 0.01);
-			AddItemWithProbability(new CastleDeed(), 0.01);
-			AddItemWithProbability(new LargePatioDeed(), 0.01);
-			AddItemWithProbability(new LargeMarbleDeed(), 0.01);
-			AddItemWithProbability(new SmallTowerDeed(), 0.01);
-			AddItemWithProbability(new LogCabinDeed(), 0.01);
-			AddItemWithProbability(new SandstonePatioDeed(), 0.01);
-			AddItemWithProbability(new VillaDeed(), 0.01);
-			AddItemWithProbability(new StoneWorkshopDeed(), 0.01);
-			AddItemWithProbability(new MarbleWorkshopDeed(), 0.01);
-			AddItemWithProbability(new SmallBoatDeed(), 0.01);
-			AddItemWithProbability(new SmallDragonBoatDeed(), 0.01);
-			AddItemWithProbability(new MediumBoatDeed(), 0.01);
-			AddItemWithProbability(new MediumDragonBoatDeed(), 0.01);
-			AddItemWithProbability(new LargeBoatDeed(), 0.01);
-			AddItemWithProbability(new LargeDragonBoatDeed(), 0.01);
+            AddItemWithProbability(CreateValuableDocument(), 0.2);
+            AddItemWithProbability(CreateValuableDocument(), 0.2);
+            AddItemWithProbability(CreateValuableDocument(), 0.2);
+            AddItemWithProbability(CreateValuableDocument(), 0.2);
+            AddItemWithProbability(new StonePlasterHouseDeed(), 0.01);
+            AddItemWithProbability(new FieldStoneHouseDeed(), 0.01);
+            AddItemWithProbability(new SmallBrickHouseDeed(), 0.01);
+            AddItemWithProbability(new WoodHouseDeed(), 0.01);
+            AddItemWithProbability(new WoodPlasterHouseDeed(), 0.01);
+            AddItemWithProbability(new ThatchedRoofCottageDeed(), 0.01);
+            AddItemWithProbability(new BrickHouseDeed(), 0.01);
+            AddItemWithProbability(new TwoStoryStonePlasterHouseDeed(), 0.01);
+            AddItemWithProbability(new TwoStoryWoodPlasterHouseDeed(), 0.01);
+            AddItemWithProbability(new TowerDeed(), 0.01);
+            AddItemWithProbability(new KeepDeed(), 0.01);
+            AddItemWithProbability(new CastleDeed(), 0.01);
+            AddItemWithProbability(new LargePatioDeed(), 0.01);
+            AddItemWithProbability(new LargeMarbleDeed(), 0.01);
+            AddItemWithProbability(new SmallTowerDeed(), 0.01);
+            AddItemWithProbability(new LogCabinDeed(), 0.01);
+            AddItemWithProbability(new SandstonePatioDeed(), 0.01);
+            AddItemWithProbability(new VillaDeed(), 0.01);
+            AddItemWithProbability(new StoneWorkshopDeed(), 0.01);
+            AddItemWithProbability(new MarbleWorkshopDeed(), 0.01);
+            AddItemWithProbability(new SmallBoatDeed(), 0.01);
+            AddItemWithProbability(new SmallDragonBoatDeed(), 0.01);
+            AddItemWithProbability(new MediumBoatDeed(), 0.01);
+            AddItemWithProbability(new MediumDragonBoatDeed(), 0.01);
+            AddItemWithProbability(new LargeBoatDeed(), 0.01);
+            AddItemWithProbability(new LargeDragonBoatDeed(), 0.01);
+
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -162,8 +171,8 @@ namespace Server.Custom
         {
             SimpleNote note = new SimpleNote();
 
-			switch (Utility.Random(95)) // Update the range to the total number of documents
-			{
+            switch (Utility.Random(95)) // Update the range to the total number of documents
+            {
 				case 0:
 					note.TitleString = "Ancient Map";
 					note.NoteString = "This map is tattered and old, showing the location of a long-forgotten treasure buried deep in the mountains.";
@@ -556,7 +565,7 @@ namespace Server.Custom
 					note.TitleString = "Ancient Document";
 					note.NoteString = "This is an ancient document containing historical significance.";
 					break;
-			}
+            }
 
             return note;
         }
@@ -564,6 +573,7 @@ namespace Server.Custom
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
             FlagAsCriminal(from);
         }
 
@@ -590,13 +600,14 @@ namespace Server.Custom
         {
             base.Serialize(writer);
             writer.Write(0);
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
-
 }

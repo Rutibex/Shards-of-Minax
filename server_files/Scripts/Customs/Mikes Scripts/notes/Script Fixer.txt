@@ -1,0 +1,215 @@
+I would like your help to edit my ServUO script to be more efficient with item spawning.  Right now, it spawns the items in the container as soon it spawns into existence.  I would like it to instead only spawn the items inside once the player has successfully lockpicked the container.  There is no lockpick method to override so we will be following the example of the dungeon chest which already has this functionality built in.  All item dropping in the new script shold be done in the constructor just like the example.  Here is the script:
+
+using System;
+using Server;
+using Server.Items;
+using Server.Mobiles;
+
+namespace Server.Custom
+{
+    public class MedicineCabinet : LockableContainer
+    {
+        [Constructable]
+        public MedicineCabinet() : base(0x9A8) // Medicine Cabinet item ID
+        {
+            Name = "Medicine Cabinet";
+            Hue = Utility.RandomMinMax(1, 1600);
+            Locked = true;
+            LockLevel = Utility.RandomMinMax(1, 100);
+
+            // Add random potions, herbs, bandages, and notes
+            AddItemWithProbability(new GreaterHealPotion(), 0.25);
+            AddItemWithProbability(new GreaterCurePotion(), 0.25);
+            AddItemWithProbability(new GreaterStrengthPotion(), 0.15);
+            AddItemWithProbability(new GreaterAgilityPotion(), 0.15);
+            AddItemWithProbability(new TotalRefreshPotion(), 0.10);
+            AddItemWithProbability(new GreaterExplosionPotion(), 0.10);
+            AddItemWithProbability(new Bandage(Utility.RandomMinMax(5, 20)), 0.50);
+            AddItemWithProbability(new Garlic(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(new Ginseng(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(new Nightshade(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(new MandrakeRoot(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(new Bloodmoss(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(new SpidersSilk(Utility.RandomMinMax(5, 20)), 0.30);
+            AddItemWithProbability(CreateMedievalNote(), 0.20);
+			AddItemWithProbability(CreateMedievalNote(), 0.20);
+			AddItemWithProbability(CreateMedievalNote(), 0.20);
+			AddItemWithProbability(CreateMedievalNote(), 0.20);
+			AddItemWithProbability(CreateMedievalNote(), 0.20);
+			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+        }
+
+        private void AddItemWithProbability(Item item, double probability)
+        {
+            if (Utility.RandomDouble() < probability)
+                DropItem(item);
+        }
+
+        private Item CreateMedievalNote()
+        {
+            string[] notes = new string[]
+            {
+                "A decoction of willow bark for pain relief.",
+				"For eye health, consume a mixture of bat blood and spider silk."
+            };
+
+            return new SimpleNote
+            {
+                NoteString = notes[Utility.Random(notes.Length)],
+                TitleString = "Medieval Prescription"
+            };
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+            FlagAsCriminal(from);
+        }
+
+        public override void OnItemUsed(Mobile from, Item item)
+        {
+            base.OnItemUsed(from, item);
+            FlagAsCriminal(from);
+        }
+
+        private void FlagAsCriminal(Mobile from)
+        {
+            if (!from.Criminal)
+            {
+                from.Criminal = true;
+                from.SendMessage("You feel a sudden sense of guilt as you tamper with the medicine cabinet.");
+            }
+        }
+
+        public MedicineCabinet(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+}
+
+
+
+
+
+Here is an example of how a dungeon treasure chest is structured.  I would like the new script to follow this structure exactly.  This system already has built in the ability to spawn the items when a container is lockpicked, so you need to use it because there is no lockpick method to override:
+
+// ---------- [Level 4] ----------
+// Wooden, Metal and Metal Golden Chest
+	[FlipableAttribute( 0xe41, 0xe40 )] 
+	public class TreasureLevel4 : BaseTreasureChestMod 
+	{ 
+		[Constructable] 
+		public TreasureLevel4() : base( Utility.RandomList( 0xe40, 0xe42, 0x9ab ) )
+		{ 
+			RequiredSkill = 92;
+			LockLevel = this.RequiredSkill - Utility.Random( 1, 10 );
+			MaxLockLevel = this.RequiredSkill;
+			TrapType = TrapType.MagicTrap;
+			TrapPower = 4 * Utility.Random( 1, 25 );
+
+			DropItem( new Gold( 200, 400 ) );
+			DropItem( new BlankScroll( Utility.Random( 1, 4 ) ) );
+			
+			for( int i = Utility.Random( 1, 4 ); i > 1; i-- )
+			{
+				Item ReagentLoot = Loot.RandomReagent();
+				ReagentLoot.Amount = Utility.Random( 6, 12 );
+				DropItem( ReagentLoot );
+			}
+	
+			for ( int i = Utility.Random( 1, 4 ); i > 1; i-- )
+				DropItem( Loot.RandomPotion() );
+			
+			if ( 0.75 > Utility.RandomDouble() ) //75% chance = 3/4
+				for (int i = Utility.RandomMinMax(8,16); i > 0; i--)
+					DropItem(Loot.RandomScroll(0, 47, SpellbookType.Regular));
+
+			if ( 0.75 > Utility.RandomDouble() ) //75% chance = 3/4
+				for (int i = Utility.RandomMinMax(6,12) + 1; i > 0; i--)
+					DropItem( Loot.RandomGem() );
+
+			for( int i = Utility.Random( 1, 4 ); i > 1; i-- )
+				DropItem( Loot.RandomWand() );
+
+			// Magical ArmorOrWeapon
+			for( int i = Utility.Random( 1, 4 ); i > 1; i-- )
+			{
+				Item item = Loot.RandomArmorOrShieldOrWeapon();
+
+                if (!Core.AOS)
+                {
+                    if (item is BaseWeapon)
+                    {
+                        BaseWeapon weapon = (BaseWeapon)item;
+                        weapon.DamageLevel = (WeaponDamageLevel)Utility.Random(4);
+                        weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random(4);
+                        weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random(4);
+                        weapon.Quality = ItemQuality.Normal;
+                    }
+                    else if (item is BaseArmor)
+                    {
+                        BaseArmor armor = (BaseArmor)item;
+                        armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random(4);
+                        armor.Durability = (ArmorDurabilityLevel)Utility.Random(4);
+                        armor.Quality = ItemQuality.Normal;
+                    }
+                }
+                else
+                    AddLoot(item);
+			}
+
+			for( int i = Utility.Random( 1, 2 ); i > 1; i-- )
+				AddLoot( Loot.RandomClothing() );
+			
+			for( int i = Utility.Random( 1, 2 ); i > 1; i-- )
+				AddLoot( Loot.RandomJewelry() );
+
+            for (int i = 0; i < 4; i++) // Add four items from the list
+                DropItem(CustomLoot.GetRandomItem());
+			
+			//DropItem( new MagicCrystalBall() );
+
+			// Magic clothing (not implemented)
+			
+			// Magic jewelry (not implemented)
+		} 
+
+		public TreasureLevel4( Serial serial ) : base( serial ) 
+		{ 
+		} 
+
+		public override void Serialize( GenericWriter writer ) 
+		{ 
+			base.Serialize( writer ); 
+
+			writer.Write( (int) 0 ); // version 
+		} 
+
+		public override void Deserialize( GenericReader reader ) 
+		{ 
+			base.Deserialize( reader ); 
+
+			int version = reader.ReadInt(); 
+		} 
+	}
+
+
+I am using an older version of C# so keep this in mind:
+Always use features compatible with C# 2.0/3.0.
+Avoid newer C# constructs like interpolated strings, LINQ, var, and async/await.

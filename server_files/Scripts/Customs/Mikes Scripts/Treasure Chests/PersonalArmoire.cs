@@ -7,6 +7,8 @@ namespace Server.Custom
 {
     public class PersonalArmoire : LockableContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public PersonalArmoire() : base(0xA4D) // Armoire item ID
         {
@@ -14,26 +16,32 @@ namespace Server.Custom
             Hue = Utility.RandomMinMax(1, 1600);
             Locked = true;
             LockLevel = Utility.RandomMinMax(1, 100);
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add random clothing and equipment
             AddItemWithProbability(Loot.RandomClothing(), 0.25);
             AddItemWithProbability(Loot.RandomArmor(), 0.15);
             AddItemWithProbability(Loot.RandomWeapon(), 0.10);
-			AddItemWithProbability(Loot.RandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomClothing(), 0.25);
             AddItemWithProbability(Loot.RandomArmor(), 0.15);
-			AddItemWithProbability(Loot.RandomClothing(), 0.25);
-			AddItemWithProbability(Loot.RandomArmor(), 0.15);
-			AddItemWithProbability(Loot.RandomWeapon(), 0.10);
-			AddItemWithProbability(Loot.RandomClothing(), 0.25);
-			AddItemWithProbability(Loot.RandomArmor(), 0.15);
-			AddItemWithProbability(Loot.RandomWeapon(), 0.10);
-			AddItemWithProbability(Loot.RandomClothing(), 0.25);
-			AddItemWithProbability(Loot.RandomArmor(), 0.15);
-			AddItemWithProbability(Loot.RandomWeapon(), 0.10);
-			AddItemWithProbability(Loot.RandomClothing(), 0.25);
-			AddItemWithProbability(Loot.RandomArmor(), 0.15);
-			AddItemWithProbability(Loot.RandomWeapon(), 0.10);
-			AddItemWithProbability(CreateRandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomArmor(), 0.15);
+            AddItemWithProbability(Loot.RandomWeapon(), 0.10);
+            AddItemWithProbability(Loot.RandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomArmor(), 0.15);
+            AddItemWithProbability(Loot.RandomWeapon(), 0.10);
+            AddItemWithProbability(Loot.RandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomArmor(), 0.15);
+            AddItemWithProbability(Loot.RandomWeapon(), 0.10);
+            AddItemWithProbability(Loot.RandomClothing(), 0.25);
+            AddItemWithProbability(Loot.RandomArmor(), 0.15);
+            AddItemWithProbability(Loot.RandomWeapon(), 0.10);
+            AddItemWithProbability(CreateRandomClothing(), 0.25);
             AddItemWithProbability(CreateRandomArmor(), 0.15);
             AddItemWithProbability(CreateRandomWeapon(), 0.10);
             AddItemWithProbability(CreateRandomHat(), 0.10);
@@ -41,7 +49,7 @@ namespace Server.Custom
             AddItemWithProbability(CreateRandomJewelry(), 0.10);
             AddItemWithProbability(CreateRandomInstrument(), 0.10);
             AddItemWithProbability(CreateRandomGem(), 0.10);
-			AddItemWithProbability(CreateRandomClothing(), 0.25);
+            AddItemWithProbability(CreateRandomClothing(), 0.25);
             AddItemWithProbability(CreateRandomArmor(), 0.15);
             AddItemWithProbability(CreateRandomWeapon(), 0.10);
             AddItemWithProbability(CreateRandomHat(), 0.10);
@@ -50,26 +58,27 @@ namespace Server.Custom
             AddItemWithProbability(CreateRandomInstrument(), 0.10);
             AddItemWithProbability(CreateRandomGem(), 0.10);
             AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(new MaxxiaScroll(), 0.20);
+            AddItemWithProbability(new MaxxiaScroll(), 0.20);
             AddItemWithProbability(new Gold(Utility.RandomMinMax(1, 10000)), 0.20);
-			AddItemWithProbability(new BoltOfCloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
-			AddItemWithProbability(new Cloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
-			AddItemWithProbability(new UncutCloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
-			AddItemWithProbability(new RandomMagicClothing(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingX(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXA(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXB(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXC(), 0.004);
-			AddItemWithProbability(new RandomMagicClothingXD(), 0.004);
-			
-			
-            AddItemWithProbability(Loot.RandomWeapon(), 0.10);// Add personal notes
+            AddItemWithProbability(new BoltOfCloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
+            AddItemWithProbability(new Cloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
+            AddItemWithProbability(new UncutCloth(Utility.RandomMinMax(1, 5)) { Hue = Utility.RandomMinMax(1, 3000) }, 0.15);
+            AddItemWithProbability(new RandomMagicClothing(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingX(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXA(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXB(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXC(), 0.004);
+            AddItemWithProbability(new RandomMagicClothingXD(), 0.004);
+
+            AddItemWithProbability(Loot.RandomWeapon(), 0.10); // Add personal notes
             AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(CreatePersonalNote(), 0.20);
-			AddItemWithProbability(CreatePersonalNote(), 0.20);
+            AddItemWithProbability(CreatePersonalNote(), 0.20);
+            AddItemWithProbability(CreatePersonalNote(), 0.20);
+            AddItemWithProbability(CreatePersonalNote(), 0.20);
+            AddItemWithProbability(CreatePersonalNote(), 0.20);
+            AddItemWithProbability(CreatePersonalNote(), 0.20);
+
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -386,6 +395,7 @@ namespace Server.Custom
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
             FlagAsCriminal(from);
         }
 
@@ -411,13 +421,15 @@ namespace Server.Custom
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(0);
+            writer.Write((int)0); // version
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
 }

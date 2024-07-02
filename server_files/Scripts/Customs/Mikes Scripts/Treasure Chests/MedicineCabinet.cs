@@ -7,6 +7,8 @@ namespace Server.Custom
 {
     public class MedicineCabinet : LockableContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public MedicineCabinet() : base(0x9A8) // Medicine Cabinet item ID
         {
@@ -14,6 +16,12 @@ namespace Server.Custom
             Hue = Utility.RandomMinMax(1, 1600);
             Locked = true;
             LockLevel = Utility.RandomMinMax(1, 100);
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add random potions, herbs, bandages, and notes
             AddItemWithProbability(new GreaterHealPotion(), 0.25);
@@ -30,15 +38,17 @@ namespace Server.Custom
             AddItemWithProbability(new Bloodmoss(Utility.RandomMinMax(5, 20)), 0.30);
             AddItemWithProbability(new SpidersSilk(Utility.RandomMinMax(5, 20)), 0.30);
             AddItemWithProbability(CreateMedievalNote(), 0.20);
-			AddItemWithProbability(CreateMedievalNote(), 0.20);
-			AddItemWithProbability(CreateMedievalNote(), 0.20);
-			AddItemWithProbability(CreateMedievalNote(), 0.20);
-			AddItemWithProbability(CreateMedievalNote(), 0.20);
-			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
-			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
-			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
-			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
-			AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+            AddItemWithProbability(CreateMedievalNote(), 0.20);
+            AddItemWithProbability(CreateMedievalNote(), 0.20);
+            AddItemWithProbability(CreateMedievalNote(), 0.20);
+            AddItemWithProbability(CreateMedievalNote(), 0.20);
+            AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+            AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+            AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+            AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+            AddItemWithProbability(new RandomFancyMedicine(), 0.05);
+
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -192,6 +202,7 @@ namespace Server.Custom
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
             FlagAsCriminal(from);
         }
 
@@ -217,13 +228,15 @@ namespace Server.Custom
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(0);
+            writer.Write((int)0); // version
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
 }

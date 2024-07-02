@@ -260,13 +260,13 @@ namespace Server.Mobiles
             new Ability(typeof(XmlMinionStrike), "BakeKitsune"),
             new Ability(typeof(XmlMinionStrike), "Balron"),
             new Ability(typeof(XmlMinionStrike), "Barracoon"),
-            new Ability(typeof(XmlMinionStrike), "BaseChampion"),
-            new Ability(typeof(XmlMinionStrike), "BaseFamiliar"),
-            new Ability(typeof(XmlMinionStrike), "BaseGuard"),
-            new Ability(typeof(XmlMinionStrike), "BaseHealer"),
-            new Ability(typeof(XmlMinionStrike), "BaseMount"),
-            new Ability(typeof(XmlMinionStrike), "BaseShieldGuard"),
-            new Ability(typeof(XmlMinionStrike), "BaseWarHorse"),
+
+
+
+
+
+
+
             new Ability(typeof(XmlMinionStrike), "Beetle"),
             new Ability(typeof(XmlMinionStrike), "Betrayer"),
             new Ability(typeof(XmlMinionStrike), "Bird"),
@@ -331,8 +331,8 @@ namespace Server.Mobiles
             new Ability(typeof(XmlMinionStrike), "Drake"),
             new Ability(typeof(XmlMinionStrike), "DreadSpider"),
             new Ability(typeof(XmlMinionStrike), "DullCopperElemental"),
-            new Ability(typeof(XmlMinionStrike), "Dummy"),
-            new Ability(typeof(XmlMinionStrike), "DummySpecific"),
+
+
             new Ability(typeof(XmlMinionStrike), "Eagle"),
             new Ability(typeof(XmlMinionStrike), "EarthElemental"),
             new Ability(typeof(XmlMinionStrike), "Efreet"),

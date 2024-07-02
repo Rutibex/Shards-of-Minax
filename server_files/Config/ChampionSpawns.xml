@@ -92,5 +92,178 @@
     </spawn>
     <spawn name="Bedlam" type="Corrupt" killsMod="0.5" spawnMod="0.5">
         <location x="174" y="1629" z="8" map="Malas" radius="25"/>
+    <spawn name="UltimateMasterAlchemist" type="UltimateMasterAlchemist">
+        <location x="1521" y="555" z="24" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterAnatomy" type="UltimateMasterAnatomy">
+        <location x="1207" y="1125" z="-5" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterAnimalLore" type="UltimateMasterAnimalLore">
+        <location x="820" y="1070" z="-10" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterAnimalTamer" type="UltimateMasterAnimalTamer">
+        <location x="1643" y="314" z="68" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterArcher" type="UltimateMasterArcher">
+        <location x="1363" y="1067" z="7" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterArmsLore" type="UltimateMasterArmsLore">
+        <location x="1251" y="743" z="-60" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterBeggar" type="UltimateMasterBeggar">
+        <location x="575" y="427" z="41" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterBlacksmith" type="UltimateMasterBlacksmith">
+        <location x="116" y="1510" z="-8" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterBushido" type="UltimateMasterBushido">
+        <location x="109" y="943" z="-8" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterCamper" type="UltimateMasterCamper">
+        <location x="445" y="1543" z="-9" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterCarpenter" type="UltimateMasterCarpenter">
+        <location x="1746" y="1213" z="20" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterCartographer" type="UltimateMasterCartographer">
+        <location x="2114" y="906" z="-8" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterChivalry" type="UltimateMasterChivalry">
+        <location x="2113" y="1001" z="-8" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterChef" type="UltimateMasterChef">
+        <location x="1273" y="484" z="22" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterDetectingHidden" type="UltimateMasterDetectingHidden">
+        <location x="1421" y="314" z="92" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterDiscordance" type="UltimateMasterDiscordance">
+        <location x="1598" y="627" z="6" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterIntelligence" type="UltimateMasterIntelligence">
+        <location x="1757" y="875" z="-6" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterFencer" type="UltimateMasterFencer">
+        <location x="1349" y="1251" z="9" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterFishing" type="UltimateMasterFishing">
+        <location x="897" y="1314" z="-51" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterBowcraft" type="UltimateMasterBowcraft">
+        <location x="411" y="1199" z="-46" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterFocus" type="UltimateMasterFocus">
+        <location x="286" y="1440" z="37" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterForensicEvaluator" type="UltimateMasterForensicEvaluator">
+        <location x="642" y="815" z="-24" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterHealer" type="UltimateMasterHealer">
+        <location x="664" y="671" z="27" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterHerder" type="UltimateMasterHerder">
+        <location x="970" y="428" z="-60" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterHider" type="UltimateMasterHider">
+        <location x="754" y="205" z="-20" map="Ilshenar" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterImbuing" type="UltimateMasterImbuing">
+        <location x="1265" y="1418" z="-75" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterInscription" type="UltimateMasterInscription">
+        <location x="2367" y="1127" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterItemIdentification" type="UltimateMasterItemIdentification">
+        <location x="680" y="1264" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterLockpicker" type="UltimateMasterLockpicker">
+        <location x="1858" y="201" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterLumberjack" type="UltimateMasterLumberjack">
+        <location x="2191" y="328" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMaceFighting" type="UltimateMasterMaceFighting">
+        <location x="1565" y="883" z="-65" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMage" type="UltimateMasterMage">
+        <location x="2078" y="1603" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMagicResistance" type="UltimateMasterMagicResistance">
+        <location x="1815" y="1797" z="-90" map="Malas" radius="30"/>
+    </spawn>
+    <spawn name="UltimateMasterMeditation" type="UltimateMasterMeditation">
+        <location x="1589" y="383" z="-30" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMiner" type="UltimateMasterMiner">
+        <location x="1340" y="1220" z="-70" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMusician" type="UltimateMasterMusician">
+        <location x="710" y="936" z="62" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterMysticism" type="UltimateMasterMysticism">
+        <location x="1065" y="826" z="41" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterNecromancer" type="UltimateMasterNecromancer">
+        <location x="1135" y="700" z="92" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterNinjitsu" type="UltimateMasterNinjitsu">
+        <location x="927" y="111" z="69" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterParrying" type="UltimateMasterParrying">
+        <location x="151" y="607" z="62" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterPeacemaker" type="UltimateMasterPeacemaker">
+        <location x="234" y="1092" z="30" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterPoisoner" type="UltimateMasterPoisoner">
+        <location x="319" y="407" z="52" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterProvocation" type="UltimateMasterProvocation">
+        <location x="516" y="517" z="52" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterRemoveTrap" type="UltimateMasterRemoveTrap">
+        <location x="496" y="365" z="70" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterSnooping" type="UltimateMasterSnooping">
+        <location x="325" y="256" z="31" map="Tokuno" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterSpellweaver" type="UltimateMasterSpellweaver">
+        <location x="70" y="383" z="19" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterSpiritSpeak" type="UltimateMasterSpiritSpeak">
+        <location x="48" y="65" z="19" map="Malas" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterThief" type="UltimateMasterThief">
+        <location x="1065" y="2995" z="94" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterStealth" type="UltimateMasterStealth">
+        <location x="704" y="3930" z="-11" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterSwordsman" type="UltimateMasterSwordsman">
+        <location x="424" y="3133" z="58" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterTactician" type="UltimateMasterTactician">
+        <location x="380" y="3010" z="4" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterTailor" type="UltimateMasterTailor">
+        <location x="741" y="3673" z="19" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterTasteIdentification" type="UltimateMasterTasteIdentification">
+        <location x="499" y="3832" z="-14" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterThrowing" type="UltimateMasterThrowing">
+        <location x="821" y="3786" z="-23" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterTinkering" type="UltimateMasterTinkering">
+        <location x="1050" y="3334" z="38" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterTracker" type="UltimateMasterTracker">
+        <location x="1088" y="3733" z="-23" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterVeterinary" type="UltimateMasterVeterinary">
+        <location x="1110" y="3622" z="-25" map="TerMur" radius="60"/>
+    </spawn>
+    <spawn name="UltimateMasterWrestling" type="UltimateMasterWrestling">
+        <location x="353" y="3594" z="57" map="TerMur" radius="60"/>
     </spawn>
 </championSystem>

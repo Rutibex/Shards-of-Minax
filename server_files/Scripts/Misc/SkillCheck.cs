@@ -327,7 +327,7 @@ namespace Server.Misc
 				}
 
 				if (skill.Base <= 100.0)
-					toGain = Utility.Random(4) + 1;
+					toGain = Utility.Random(10) + 1;
 
 				#region Mondain's Legacy
 				if (from is PlayerMobile && QuestHelper.EnhancedSkill((PlayerMobile)from, skill))

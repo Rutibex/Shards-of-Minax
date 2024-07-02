@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Engines.Plants;
 
 namespace Server.Mobiles 
 { 
@@ -55,6 +56,8 @@ namespace Server.Mobiles
                 Add(new GenericBuyInfo(typeof(Apple), 3, 20, 0x9D0, 0, true));
                 Add(new GenericBuyInfo(typeof(SheafOfHay), 2, 20, 0xF36, 0));
                 Add(new GenericBuyInfo(typeof(Hoe), 5, 20, 3897, 0));
+				Add(new GenericBuyInfo(typeof(RaisedGardenDeed), 10000, 10, 0x14F0, 0));
+				Add(new GenericBuyInfo(typeof(SeedBox), 10000, 10, 0x4B58, 0));
             }
         }
 

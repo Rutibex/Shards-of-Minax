@@ -8,11 +8,19 @@ namespace Server.Custom
 {
     public class AbandonedRefuseChest : BaseContainer
     {
+        private bool _initialized;
+
         [Constructable]
         public AbandonedRefuseChest() : base(0xE77) // Trash barrel item ID
         {
             Name = "Abandoned Refuse";
             Hue = Utility.RandomMinMax(1, 1600);
+            _initialized = false; // Indicates whether items have been added
+        }
+
+        private void InitializeItems()
+        {
+            if (_initialized) return;
 
             // Add items with probabilities
             AddItemWithProbability(new MaxxiaScroll(), 0.05);
@@ -192,6 +200,7 @@ namespace Server.Custom
 			AddItemWithProbability(new SimpleNote { NoteString = "The wind's whisper will guide you.", TitleString = "Wind's Whisper" }, 0.01);
 			AddItemWithProbability(new SimpleNote { NoteString = "Beneath the midnight sun, secrets are unveiled.", TitleString = "Midnight Sun" }, 0.01);
 
+            _initialized = true; // Mark as initialized
         }
 
         private void AddItemWithProbability(Item item, double probability)
@@ -243,42 +252,50 @@ namespace Server.Custom
             else
                 return CreateRandomShield(min, max, name);
         }
-		
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+            InitializeItems(); // Initialize items when opened for the first time
+        }
+
+        public override void OnItemLifted(Mobile from, Item item)
+        {
+            base.OnItemLifted(from, item);
+
+            if (from != null && from is PlayerMobile)
+            {
+                PlayerMobile player = (PlayerMobile)from;
+
+                // Amount of fame and karma to lose
+                int fameLoss = 10; // Adjust this value as needed
+                int karmaLoss = 10; // Adjust this value as needed
+
+                // Decrease fame and karma
+                player.Fame = Math.Max(player.Fame - fameLoss, 0);
+                player.Karma = Math.Max(player.Karma - karmaLoss, -10000); // Minimum karma is -10000
+
+                // Send message to player
+                player.SendMessage(38, "You are noticed picking garbage and lose some fame and karma.");
+            }
+        }
+
         public AbandonedRefuseChest(Serial serial) : base(serial)
         {
         }
-		
-		public override void OnItemLifted(Mobile from, Item item)
-		{
-			base.OnItemLifted(from, item);
 
-			if (from != null && from is PlayerMobile)
-			{
-				PlayerMobile player = (PlayerMobile)from;
-
-				// Amount of fame and karma to lose
-				int fameLoss = 10; // Adjust this value as needed
-				int karmaLoss = 10; // Adjust this value as needed
-
-				// Decrease fame and karma
-				player.Fame = Math.Max(player.Fame - fameLoss, 0);
-				player.Karma = Math.Max(player.Karma - karmaLoss, -10000); // Minimum karma is -10000
-
-				// Send message to player
-				player.SendMessage(38, "You are noticed picking garbage and lose some fame and karma.");
-			}
-		}
-		
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
             writer.Write(0);
+            writer.Write(_initialized);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            _initialized = reader.ReadBool();
         }
     }
 }

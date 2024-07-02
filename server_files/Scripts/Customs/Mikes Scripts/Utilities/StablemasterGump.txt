@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using Server;
+using Server.Gumps;
+using Server.Mobiles;
+using Server.Network;
+
+public class StablemasterGump : Gump
+{
+    private const int ItemsPerPage = 7;
+    private Mobile m_From;
+    private List<BaseCreature> m_Stable;
+    private int m_Page;
+
+    public StablemasterGump(Mobile from, List<BaseCreature> stable, int page = 0) : base(50, 50)
+    {
+        m_From = from;
+        m_Stable = stable;
+        m_Page = page;
+
+        AddPage(0);
+        AddBackground(0, 0, 600, 450, 9200);
+        AddLabel(250, 15, 0, "Stablemaster");
+
+        AddButton(520, 45, 4005, 4007, 0, GumpButtonType.Page, 1);
+        AddLabel(555, 47, 0, "1");
+
+        for (int i = 0; i < ItemsPerPage && i + (page * ItemsPerPage) < stable.Count; i++)
+        {
+            int index = i + (page * ItemsPerPage);
+            BaseCreature pet = stable[index];
+
+            AddItem(50, 100 + (i * 45), pet.ItemID);
+            AddLabel(100, 100 + (i * 45), 0, pet.Name);
+            AddLabel(250, 100 + (i * 45), 0, pet.GetType().Name);
+            AddLabel(400, 100 + (i * 45), 0, $"Skill: {pet.Skills[SkillName.AnimalTaming].Base}");
+            AddLabel(500, 100 + (i * 45), 0, $"Slots: {pet.ControlSlots}");
+        }
+
+        if (page > 0)
+            AddButton(520, 400, 4014, 4016, 1, GumpButtonType.Reply, 0);
+
+        if ((page + 1) * ItemsPerPage < stable.Count)
+            AddButton(540, 400, 4005, 4007, 2, GumpButtonType.Reply, 0);
+    }
+
+    public override void OnResponse(NetState sender, RelayInfo info)
+    {
+        Mobile from = sender.Mobile;
+
+        switch (info.ButtonID)
+        {
+            case 1: // Previous page
+                from.SendGump(new StablemasterGump(from, m_Stable, m_Page - 1));
+                break;
+            case 2: // Next page
+                from.SendGump(new StablemasterGump(from, m_Stable, m_Page + 1));
+                break;
+        }
+    }
+}
+
+[CommandProperty(AccessLevel.GameMaster)]
+public class OpenStableCommand
+{
+    public static void Initialize()
+    {
+        CommandSystem.Register("openstable", AccessLevel.Player, new CommandEventHandler(OpenStable_OnCommand));
+    }
+
+    [Usage("OpenStable")]
+    [Description("Opens the stablemaster gump.")]
+    public static void OpenStable_OnCommand(CommandEventArgs e)
+    {
+        Mobile from = e.Mobile;
+        List<BaseCreature> stable = new List<BaseCreature>();
+
+        // Here you would add logic to populate the 'stable' list with the player's stabled creatures
+        // This might involve querying a database or accessing some other data structure where stabled creatures are stored
+
+        from.SendGump(new StablemasterGump(from, stable));
+    }
+}
